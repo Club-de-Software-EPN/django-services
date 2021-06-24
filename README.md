@@ -16,9 +16,25 @@
 
 This endpoint is for end-user applications
 
-- /web_services/detect_facial_emotions
+- *GET* /web_services/detect_facial_emotions
 
 This application takes a snapshot with webcam of a face and predicts the emotion present in the face among the following tags: 'Angry', 'Fear', 'Happy', 'Sad', 'Surprise' or 'Neutral'. This is a refactoring of [this project](https://colab.research.google.com/drive/1V7XMG9CB6zreYzURlE785ZECBob7NX4L#scrollTo=8Regb5LGlBv-)
+
+- *POST* /web_services/detect_facial_emotions
+
+You can send a PNG image in base64 format to this endpoint, as result it returns a json with the face emotion prediction
+
+> JSON Request
+
+| Name          | Type             | 
+| ------------- |:----------------:| 
+| image         | Base64 PNG image | 
+
+> JSON Response
+
+| Name          | Type             | 
+| ------------- |:----------------:| 
+| prediction    | String           | 
 
 ***
 
@@ -28,7 +44,7 @@ This application takes a snapshot with webcam of a face and predicts the emotion
 
 This endpoint is to show projects that cant be used directly by an user
 
-- /projects/neat
+- *GET* /projects/neat
 
 This project is about Neural Networks and genetic algorithms. Is composed by two parts:
 1. A set of agents that learns to play Flappy birds
@@ -44,7 +60,7 @@ This project is about Neural Networks and genetic algorithms. Is composed by two
 
 This endpoint is for video games made in Unity that actually use artificial intelligence
 
-- /games/text101
+- *GET* /games/text101
 
 This application is just a demo/example to be used as reference to setup a Unity game in this app endpoint
 
