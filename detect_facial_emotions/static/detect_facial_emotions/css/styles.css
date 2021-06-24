@@ -1,0 +1,42 @@
+.title{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.webcam_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.button_step {
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.3rem;
+    background-color: rgb(112, 199, 199);
+    color: black;
+    transition: 0.3s;
+}
+
+.button_step:hover {
+    border-radius: 30%;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.center { 
+    margin: 0 auto;
+    width: "640px";
+    height: "480px";
+}

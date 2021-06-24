@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "detect_facial_emotions/css/styles.css" %}"> 
+{% endblock css_files %}
+
+
+
+{% block page_title %}Facial emotions{% endblock page_title %}
+
+{% block content %}
+
+    <h1 class="title">Hey emotion</h1>
+
+     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+
+    <div class="buttons_container">
+
+        <button class="button_step" onclick="start()">Start</button>
+        <button class="button_step" onclick="stop()">Stop</button>
+        <button class="button_step" onclick="take_picture()">Take picture</button>
+
+    </div>
+    
+    <div class="webcam_container">
+        <video class="center" id="webcam" autoplay playsinline></video>
+        <!--<audio id="snapSound" src="audio/snap.wav" preload = "auto"></audio>-->
+    </div>
+
+    <br>
+
+    <div class="webcam_container">
+
+        <canvas class="center" id="canvas" class="d-none"></canvas>
+    </div>
+        
+
+
+    <script>
+        
+
+        const webcamElement = document.getElementById('webcam');
+        const canvasElement = document.getElementById('canvas');
+        // const snapSoundElement = document.getElementById('snapSound');
+        const webcam = new Webcam(webcamElement, 'user', canvasElement);
+
+        function start(){
+            webcam.start()
+            .then(result =>{
+                console.log("webcam started");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
+
+        function take_picture(){
+            let picture = webcam.snap();
+            // console.log(picture)
+            const csrftoken = getCookie('csrftoken');
+            // console.log(csrftoken)
+
+            $.ajax({
+                method: "POST",
+                url: "/web_services/detect_facial_emotions/",
+                data: {
+                    "image": picture,
+                    CSRF: getCookie("csrftoken")
+                },
+                headers: {'X-CSRFToken': csrftoken},
+                success: function(response){
+                    console.log(response)
+                    alert(response["prediction"])
+                },
+                error: function(error){
+                    console.log(error)
+                }
+
+            })
+        }
+
+        function stop(){
+            webcam.stop()
+        }
+
+        function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+        
+
+    </script>
+    
+{% endblock content %}
+
