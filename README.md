@@ -50,7 +50,7 @@ This project is about Neural Networks and genetic algorithms. Is composed by two
 1. A set of agents that learns to play Flappy birds
 > [Based on this video](https://www.youtube.com/watch?v=OGHA-elMrxI)
 2. A set of agents that learns to collect life and try to avoid collision with an enemy, who is walking randomly
-> [See the NEAT Natural Selection Demo](https://drive.google.com/file/d/1a_AYG1VFoml3hF0QJxaw9QAQu0b7nP4e/view?usp=sharing)
+> [See the Demo of this project here](https://drive.google.com/file/d/1a_AYG1VFoml3hF0QJxaw9QAQu0b7nP4e/view?usp=sharing)
 
 ***
 
